@@ -1,7 +1,7 @@
 <template>
   <IRow>
     <IColumn>
-      <IBadge color="success" class="_margin-bottom:2!"
+      <IBadge color="primary" class="_margin-bottom:2!"
         >{{ team.value }}
       </IBadge>
     </IColumn>

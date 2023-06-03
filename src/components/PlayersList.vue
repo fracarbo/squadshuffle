@@ -1,7 +1,7 @@
 <template>
   <IListGroup color="dark">
     <IListGroupItem v-for="player in players" :key="player.name">
-      <div class="_display:flex!">
+      <div class="_display:flex! _align-items:center!">
         <div>
           <ICheckbox v-model="player.selected"
             ><span class="_color:light!">{{ player.name }}</span></ICheckbox
@@ -11,7 +11,7 @@
           <IBadge color="info">{{ player.overall }}</IBadge>
         </div>
         <div class="_margin-left:auto!">
-          <IButton color="danger" outline @click="removePlayer(player)">
+          <IButton color="danger" link @click="removePlayer(player)">
             <IIcon name="fas-trash" color="primary" />
           </IButton>
         </div>

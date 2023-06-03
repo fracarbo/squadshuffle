@@ -37,9 +37,10 @@
 
 <script setup lang="ts">
 import type { Player } from "@/models/Player";
-import { ref, computed } from "vue";
+import { ref, computed, watchEffect } from "vue";
 import { usePlayersStore } from "@/stores/players";
 import { IInput } from "@inkline/inkline";
+import capitalize from "capitalize";
 
 const emit = defineEmits<{
   (e: "newPlayer", player: Player): void;
@@ -52,6 +53,9 @@ const newPlayer = ref<Player>({
   overall: 5,
 });
 
+watchEffect(
+  () => (newPlayer.value.name = capitalize.words(newPlayer.value.name))
+);
 const playerAlreadyExists = computed(() => store.exists(newPlayer.value.name));
 
 const formIsValid = computed(() => !playerAlreadyExists.value); // TODO

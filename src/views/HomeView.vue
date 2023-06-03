@@ -7,7 +7,7 @@
 
     <main>
       <div v-if="players.length > 0" class="_margin-top:2">
-        <span>Selected: {{ selectedPlayers.length }}</span>
+        <span>{{ selectedPlayers.length }} selected</span>
         <PlayersList
           v-model="players"
           @wanna-delete-player="deletePlayer"
@@ -23,30 +23,36 @@
           <p class="_text-align:center!">Add some player</p>
         </div>
       </div>
+      <IButton
+        @click="toggleModal"
+        color="primary"
+        outline
+        block
+        class="_margin-top:1"
+      >
+        <IIcon name="fas-plus" />
+        New player
+      </IButton>
     </main>
 
-    <BalancedTeams
-      v-if="players.length > 0"
-      :players="selectedPlayers"
+    <IButton
+      v-if="selectedPlayers.length > 2"
+      block
+      :disabled="selectedPlayers.length < 3"
+      color="success"
+      size="lg"
+      to="/suggestions"
       class="_margin-top:2"
-    />
+    >
+      <IIcon name="fas-balance-scale" color="primary" />
+      Balance
+    </IButton>
   </div>
-  <div class="_clearfix! _position:fixed-bottom">
-    <div class="_float:right! _margin:1">
-      <IButton @click="toggleModal" color="primary" circle size="lg">
-        <IIcon name="fas-plus" />
-      </IButton>
-    </div>
-  </div>
-
-  <IToastContainer />
 </template>
 
 <script setup lang="ts">
 import NewPlayerForm from "@/components/NewPlayerForm.vue";
 import PlayersList from "@/components/PlayersList.vue";
-import BalancedTeams from "@/components/BalancedTeams.vue";
-
 import { usePlayersStore } from "@/stores/players";
 import { storeToRefs } from "pinia";
 import { ref } from "vue";

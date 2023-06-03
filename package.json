@@ -1,6 +1,6 @@
 {
   "name": "team-balancer",
-  "version": "0.0.0",
+  "version": "3.0.0",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -14,6 +14,7 @@
     "@inkline/inkline": "^4.0.0",
     "@vueuse/core": "^10.1.2",
     "bootstrap": "^5.2.3",
+    "capitalize": "^2.0.4",
     "lodash": "^4.17.21",
     "lodash.combinations": "^18.11.1",
     "pinia": "^2.0.36",
@@ -24,6 +25,7 @@
     "@inkline/config": "^1.0.0",
     "@inkline/plugin": "^1.0.0",
     "@tsconfig/node18": "^2.0.1",
+    "@types/capitalize": "^2.0.0",
     "@types/lodash": "^4.14.195",
     "@types/node": "^18.16.8",
     "@vitejs/plugin-vue": "^4.2.3",

@@ -4,7 +4,6 @@ import type { Player } from '@/models/Player'
 import type { PlayerSelectable } from '@/models/PlayerSelectable'
 import { useStorage } from '@vueuse/core'
 
-
 export const usePlayersStore = defineStore('players', () => {
   const players = useStorage<PlayerSelectable[]>('players', [])
 

@@ -13,7 +13,7 @@
         <IButton
           link
           @click="shareTeams(suggestion)"
-          color="secondary"
+          color="light"
           class="_float:right!"
         >
           <IIcon name="fas-share" color="primary" />
