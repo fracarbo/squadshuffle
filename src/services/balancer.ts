@@ -29,7 +29,9 @@ const formatTeam = (team: Team) => {
     value: teamValue(team)
   }
 }
-
+interface PossibleTeam {
+  
+}
 export function balanceTeamsSuggestions(playersList: Player[], nOfResults: number) {
   const target = playersList.reduce((sum, player) => sum + player.overall, 0) / 2
   const playersPerTeam = Math.floor(playersList.length / 2)

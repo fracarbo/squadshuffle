@@ -1,20 +1,45 @@
 <template>
-  <main>
-    <NewPlayerForm @new-player="addPlayer" />
+  <div>
+    <IModal v-model="newPlayerModalIsVisible">
+      <template #header>New player </template>
+      <NewPlayerForm @new-player="addPlayer" />
+    </IModal>
 
-    <section>
-      <div v-if="players.length > 0" class="mb-4 card">
-        <div class="card-body">
-          <h3 class="card-title mb-4">Players list</h3>
-          <span>Selected: {{ selectedPlayers.length }}</span>
-          <PlayersList v-model="players" @wanna-delete-player="deletePlayer" />
+    <main>
+      <div v-if="players.length > 0" class="_margin-top:2">
+        <span>Selected: {{ selectedPlayers.length }}</span>
+        <PlayersList
+          v-model="players"
+          @wanna-delete-player="deletePlayer"
+          class="_margin-top:1"
+        />
+      </div>
+      <div
+        v-else
+        class="_display:flex! _justify-content:center! _flex _items-center"
+      >
+        <div>
+          <img :src="football" class="no-players-illustration" />
+          <p class="_text-align:center!">Add some player</p>
         </div>
       </div>
-      <p v-else>Add some player</p>
-    </section>
+    </main>
 
-    <BalancedTeams :players="selectedPlayers" />
-  </main>
+    <BalancedTeams
+      v-if="players.length > 0"
+      :players="selectedPlayers"
+      class="_margin-top:2"
+    />
+  </div>
+  <div class="_clearfix! _position:fixed-bottom">
+    <div class="_float:right! _margin:1">
+      <IButton @click="toggleModal" color="primary" circle size="lg">
+        <IIcon name="fas-plus" />
+      </IButton>
+    </div>
+  </div>
+
+  <IToastContainer />
 </template>
 
 <script setup lang="ts">
@@ -22,19 +47,34 @@ import NewPlayerForm from "@/components/NewPlayerForm.vue";
 import PlayersList from "@/components/PlayersList.vue";
 import BalancedTeams from "@/components/BalancedTeams.vue";
 
-import type { PlayerSelectable } from "@/models/PlayerSelectable";
-import { computed, ref } from "vue";
+import { usePlayersStore } from "@/stores/players";
+import { storeToRefs } from "pinia";
+import { ref } from "vue";
 import type { Player } from "@/models/Player";
+import football from "@/assets/football.png";
 
-const players = ref<PlayerSelectable[]>([]);
-const selectedPlayers = computed(() => players.value.filter((p) => p.selected));
+const playersStore = usePlayersStore();
+const { players, selectedPlayers } = storeToRefs(playersStore);
+const { deletePlayer: remove, addPlayer: add } = playersStore;
 
-const addPlayer = (newPlayer: Player) => {
-  console.log(newPlayer);
-  players.value.push({ ...newPlayer, selected: true });
+const deletePlayer = (player: Player) => {
+  remove(player);
 };
 
-const deletePlayer = (toDelete: Player) => {
-  players.value = players.value.filter((p: Player) => p.name !== toDelete.name);
+const addPlayer = (player: Player) => {
+  try {
+    add(player);
+  } catch (error) {}
 };
+
+const newPlayerModalIsVisible = ref(false);
+const toggleModal = () =>
+  (newPlayerModalIsVisible.value = !newPlayerModalIsVisible.value);
 </script>
+
+<style scoped>
+.no-players-illustration {
+  width: 100%;
+  max-width: 400px;
+}
+</style>

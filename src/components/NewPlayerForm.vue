@@ -1,61 +1,71 @@
 <template>
-  <section class="mb-4 card">
-    <div class="card-body">
-      <h3 class="card-title">New player</h3>
-      <form @submit.prevent="addPlayer">
-        <div class="row mb-2">
-          <div class="col">
-            <label>Name</label>
-            <input
-              id="newPlayerNameField"
-              v-model="newPlayer.name"
-              class="form-control mb-2"
-              placeholder="Cristiano Ronaldo"
-              required
-            />
-          </div>
-          <div class="col-sm-6">
-            <label class="form-label">Value: {{ newPlayer.overall }}</label>
-            <input
-              v-model.number="newPlayer.overall"
-              type="range"
-              class="form-range"
-              min="1"
-              max="10"
-            />
-          </div>
-        </div>
-        <div class="d-grid gap-2">
-          <button class="btn btn-outline-primary">
-            <i class="fa fa-plus"></i> Add player
-          </button>
-        </div>
-      </form>
-    </div>
-  </section>
+  <IForm @submit.prevent="addPlayer">
+    <IFormGroup>
+      <IFormLabel>Name</IFormLabel>
+      <IInput
+        v-model.trim="newPlayer.name"
+        clearable
+        placeholder="Cristiano Ronaldo"
+        required
+      />
+      <label class="error" v-show="playerAlreadyExists"
+        >{{ newPlayer.name }} already exists</label
+      >
+    </IFormGroup>
+    <IFormGroup>
+      <IFormLabel>Overall: {{ newPlayer.overall }}</IFormLabel>
+      <IInput
+        v-model.number="newPlayer.overall"
+        type="range"
+        class="form-range"
+        min="1"
+        max="10"
+      />
+    </IFormGroup>
+    <IButton
+      :disabled="!formIsValid"
+      block
+      type="submit"
+      color="primary"
+      class="_margin-top:2!"
+    >
+      <IIcon name="fas-plus" />
+      Add player
+    </IButton>
+  </IForm>
 </template>
 
 <script setup lang="ts">
 import type { Player } from "@/models/Player";
 import { ref, computed } from "vue";
+import { usePlayersStore } from "@/stores/players";
+import { IInput } from "@inkline/inkline";
 
 const emit = defineEmits<{
   (e: "newPlayer", player: Player): void;
 }>();
+
+const store = usePlayersStore();
 
 const newPlayer = ref<Player>({
   name: "",
   overall: 5,
 });
 
-const formIsValid = computed(() => true); // TODO
+const playerAlreadyExists = computed(() => store.exists(newPlayer.value.name));
+
+const formIsValid = computed(() => !playerAlreadyExists.value); // TODO
 
 const addPlayer = () => {
-  if (!formIsValid.value) {
-    return;
-  }
   emit("newPlayer", { ...newPlayer.value });
+
+  newPlayer.value.name = "";
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.error {
+  color: var(--color-red);
+  font-size: 12px;
+}
+</style>

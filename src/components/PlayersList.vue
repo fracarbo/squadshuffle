@@ -1,21 +1,23 @@
 <template>
-  <div class="list-group list-group-flush mb-4">
-    <label v-for="player in players" :key="player.name" class="list-group-item">
-      <input
-        type="checkbox"
-        v-model="player.selected"
-        class="form-check-input me-1"
-      />
-      {{ player.name }}
-      <span class="badge bg-success rounded-pill">{{ player.overall }}</span>
-      <button
-        @click="removePlayer(player)"
-        class="btn btn-light btn-sm float-end"
-      >
-        <i class="fa fa-trash"></i> Elimina
-      </button>
-    </label>
-  </div>
+  <IListGroup color="dark">
+    <IListGroupItem v-for="player in players" :key="player.name">
+      <div class="_display:flex!">
+        <div>
+          <ICheckbox v-model="player.selected"
+            ><span class="_color:light!">{{ player.name }}</span></ICheckbox
+          >
+        </div>
+        <div class="_margin-left:2">
+          <IBadge color="info">{{ player.overall }}</IBadge>
+        </div>
+        <div class="_margin-left:auto!">
+          <IButton color="danger" outline @click="removePlayer(player)">
+            <IIcon name="fas-trash" color="primary" />
+          </IButton>
+        </div>
+      </div>
+    </IListGroupItem>
+  </IListGroup>
 </template>
 
 <script setup lang="ts">

@@ -7,7 +7,10 @@ import TheNavbar from "./components/TheNavbar.vue";
   <header>
     <TheNavbar />
   </header>
-  <RouterView />
+  <IContainer>
+    <RouterView />
+  </IContainer>
+  <IToastContainer />
 </template>
 
 <style scoped></style>
