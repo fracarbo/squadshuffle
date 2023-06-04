@@ -7,6 +7,8 @@
 
     <main>
       <div v-if="players.length > 0" class="_margin-top:2">
+        <h4 class="_margin-top:2">Players list</h4>
+
         <span>{{ selectedPlayers.length }} selected</span>
         <PlayersList
           v-model="players"
@@ -36,7 +38,7 @@
     </main>
 
     <IButton
-      v-if="selectedPlayers.length > 2"
+      v-if="players.length > 2"
       block
       :disabled="selectedPlayers.length < 3"
       color="success"

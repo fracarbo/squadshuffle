@@ -1,14 +1,7 @@
 <template>
-  <INavbar color="dark">
-    <INavbarBrand to="/"> Team Balancer (v3.0.0) </INavbarBrand>
-    <INavbarCollapsible>
-      <INav>
-        <INavItem to="/"> Home </INavItem>
-        <INavItem to="/about"> About </INavItem>
-        <INavItem to="/contact"> Contact </INavItem>
-      </INav>
-    </INavbarCollapsible>
-  </INavbar>
+  <div class="_background:dark!">
+    <IContainer class="_padding:1! _text:lg"> Team Balancer </IContainer>
+  </div>
 </template>
 
 <script setup lang="ts"></script>

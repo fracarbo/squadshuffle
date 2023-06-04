@@ -1,9 +1,14 @@
 <template>
-  <div class="_position:fixed-bottom _background:dark!">
+  <div class="_background:dark!">
     <IContainer class="_padding:1!">
       <div class="_display:flex! _align-items:center!">
         <div class="_flex-grow:1!">
-          <span> Team Balancer (v{{ appVersion }}) </span>
+          <span class="_text:xs">
+            By
+            <a href="https://instagram.com/fra_carbo_" target="_blank">
+              Francesco Carbonetto
+            </a>
+          </span>
         </div>
         <div>
           <IButton
@@ -29,11 +34,3 @@
     </IContainer>
   </div>
 </template>
-
-<script setup lang="ts">
-import pkg from "@/../package.json";
-import { computed } from "vue";
-const appVersion = computed(() => pkg.version);
-</script>
-
-<style scoped></style>

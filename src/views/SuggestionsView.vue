@@ -1,15 +1,17 @@
 <template>
-  <h3 class="_margin-top:2">Suggested teams</h3>
+  <div>
+    <h4 class="_margin-top:2">Suggested teams</h4>
 
-  <SuggestionCard
-    v-for="suggestion in balancedTeams"
-    :suggestion="suggestion"
-    class="_margin-y:2"
-  />
+    <SuggestionCard
+      v-for="suggestion in balancedTeams"
+      :suggestion="suggestion"
+      class="_margin-y:2"
+    />
 
-  <IButton to="/">
-    <IIcon name="fas-chevron-left" class="_margin-right:1/2" /> Back
-  </IButton>
+    <IButton block to="/">
+      <IIcon name="fas-chevron-left" class="_margin-right:1/2" /> Back
+    </IButton>
+  </div>
 </template>
 
 <script setup lang="ts">

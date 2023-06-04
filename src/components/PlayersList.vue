@@ -1,21 +1,21 @@
 <template>
   <IListGroup color="dark">
     <IListGroupItem v-for="player in players" :key="player.name">
-      <div class="_display:flex! _align-items:center!">
-        <div>
-          <ICheckbox v-model="player.selected"
-            ><span class="_color:light!">{{ player.name }}</span></ICheckbox
-          >
-        </div>
-        <div class="_margin-left:2">
-          <IBadge color="info">{{ player.overall }}</IBadge>
+      <label class="_display:flex! _align-items:center!">
+        <div class="_flex-grow:1">
+          <ICheckbox v-model="player.selected">
+            <IBadge class="_margin-right:1/2" color="info">
+              {{ player.overall }}
+            </IBadge>
+            <span class="_color:light!">{{ player.name }}</span>
+          </ICheckbox>
         </div>
         <div class="_margin-left:auto!">
           <IButton color="danger" link @click="removePlayer(player)">
             <IIcon name="fas-trash" color="primary" />
           </IButton>
         </div>
-      </div>
+      </label>
     </IListGroupItem>
   </IListGroup>
 </template>
