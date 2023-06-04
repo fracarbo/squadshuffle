@@ -1,6 +1,6 @@
 <template>
   <div class="_background:dark!">
-    <IContainer class="_padding:1! _text:lg"> Team Balancer </IContainer>
+    <IContainer class="_padding:1! _text:lg">Squadshuffle</IContainer>
   </div>
 </template>
 
