@@ -2,11 +2,14 @@
   <div>
     <h4 class="_margin-top:2">Suggested teams</h4>
 
-    <SuggestionCard
-      v-for="suggestion in balancedTeams"
-      :suggestion="suggestion"
-      class="_margin-y:2"
-    />
+    <IRow>
+      <IColumn v-for="suggestion in balancedTeams" md="6">
+        <SuggestionCard
+          :suggestion="suggestion"
+          class="_margin-y:2 suggestion-card"
+        />
+      </IColumn>
+    </IRow>
 
     <IButton block to="/">
       <IIcon name="fas-chevron-left" class="_margin-right:1/2" /> Back
@@ -29,5 +32,3 @@ const balancedTeams = ref(
   balanceTeamsSuggestions(players.value, maxSuggestions)
 );
 </script>
-
-<style scoped></style>

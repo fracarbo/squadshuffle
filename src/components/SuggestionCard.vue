@@ -1,7 +1,7 @@
 <template>
   <ICard>
     <IRow>
-      <IColumn>
+      <IColumn xs="5">
         <SuggestionTeam :team="suggestion[0]" />
       </IColumn>
       <IColumn
@@ -10,7 +10,7 @@
       >
         <span class="_text:bold _text:lg">VS</span>
       </IColumn>
-      <IColumn>
+      <IColumn xs="5">
         <SuggestionTeam opposite :team="suggestion[1]" />
       </IColumn>
     </IRow>
