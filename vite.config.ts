@@ -33,13 +33,8 @@ export default defineConfig({
               "sizes": "512x512",
               "type": "image/png"
             },
-            {
-              "src": "./src/assets/football.png",
-              "sizes": "192x192",
-              "type": "image/png"
-            }
           ],
-          "start_url": "/index.html",
+          "start_url": "/",
           "display": "standalone",
           "background_color": "#000000",
           "theme_color": "#AAFF01"
