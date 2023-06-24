@@ -32,6 +32,11 @@ export default defineConfig({
               "src": "./icons/android-chrome-512x512.png",
               "sizes": "512x512",
               "type": "image/png"
+            },
+            {
+              "src": "./src/assets/football.png",
+              "sizes": "192x192",
+              "type": "image/png"
             }
           ],
           "start_url": "/index.html",
