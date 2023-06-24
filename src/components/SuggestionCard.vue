@@ -5,7 +5,7 @@
         <SuggestionTeam :team="suggestion[0]" />
       </IColumn>
       <IColumn
-        xs="1"
+        xs="2"
         class="_display:flex _align-items:center _justify-content:center"
       >
         <span class="_text:bold _text:lg">VS</span>
